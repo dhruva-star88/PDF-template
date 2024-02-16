@@ -18,5 +18,9 @@ for index, row in data.iterrows():
     # Here arguments of line are x1,y1,x2,y2 => x1,y1 represents starting point and x2,y2, represents ending point
     pdf.line(10, 21, 200, 21)
 
+    # This is the nested loop, we itirate over the pages to add the particular number of pages as in csv data
+    # We substract from 1, cuz we already have one page in the above parent itiration
+    for i in range(row["Pages"] - 1):
+        pdf.add_page()
 
 pdf.output("notes.pdf")
