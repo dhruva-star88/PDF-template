@@ -17,10 +17,11 @@ for index, row in data.iterrows():
     # Here align="L" means txt will start from left side of the pdf page
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1)
     # Here arguments of line are x1,y1,x2,y2 => x1,y1 represents starting point and x2,y2, represents ending point
-    pdf.line(10, 21, 200, 21)
+    for y in range(20, 298, 10):
+        pdf.line(10, y, 200, y)
 
     # To set Footer, First we need to break the line to add text below
-    pdf.ln(262)
+    pdf.ln(265)
     pdf.set_font(family="Times", style="B", size=8)
     pdf.set_text_color(180, 180, 180)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="R")
@@ -29,9 +30,11 @@ for index, row in data.iterrows():
     # We subtract from 1, cuz we already have one page in the above parent iteration
     for i in range(row["Pages"] - 1):
         pdf.add_page()
+        for y in range(20, 298, 10):
+            pdf.line(10, y, 200, y)
 
         # To set footer for children pages
-        pdf.ln(274)
+        pdf.ln(277)
         pdf.set_font(family="Times", style="B", size=8)
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=12, txt=row["Topic"], align="R")
